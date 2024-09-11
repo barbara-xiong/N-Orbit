@@ -31,7 +31,7 @@ neighborhood_label = "Neighborhood"
 threshold = 50
 
 # Number of n-orbit samples to represent each neighborhood
-sample_size = 10000
+sample_size = 1000
 
 
 # List of all cell types (alphabetical)
