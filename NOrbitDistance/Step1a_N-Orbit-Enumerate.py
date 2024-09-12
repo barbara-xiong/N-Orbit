@@ -13,9 +13,10 @@ import sys
 import os
 
 ### INPUTS AND PARAMETERS
-cells = pd.read_csv("/path/to/data/synthetic_mrf_neighborhoods_v1.csv")
+input_file_path = "/path/to/data/synthetic_mrf_neighborhoods_v1.csv"
 intermediate_path = "/path/to/intermediates/SyntheticV1/"
 IMAGE_NAME = sys.argv[1]
+K = 6 # Recommended value 6
 N = 2 # Recommended value N = 2
 NUCLEUS_PENALTY = 5
 
@@ -43,9 +44,12 @@ if not os.path.exists(intermediate_path+"norbits/"):
 if not os.path.exists(intermediate_path+"neighborhood_vectors/"):
     os.makedirs(intermediate_path+"neighborhood_vectors/")
 
+
+cells = pd.read_csv(input_file_path)
+
 def create_graph(image, threshold=50):
     # Create kNN graph from spatial coordinates
-    A = kneighbors_graph(image[[x_label,y_label]].values, 6, mode='connectivity', include_self=False)
+    A = kneighbors_graph(image[[x_label,y_label]].values, K, mode='connectivity', include_self=False)
     print("KNN graph created.")
     D = distance_matrix(image[[x_label,y_label]].values, image[[x_label,y_label]].values)
     D[D <= threshold] = 1

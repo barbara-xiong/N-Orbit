@@ -3,11 +3,13 @@ import glob
 import numpy as np
 
 # Input paths and column name settings
+input_file_path = "/path/to/data/synthetic_mrf_neighborhoods_v1.csv"
 intermediate_path = "/path/to/intermediates/SyntheticV1/"
-inputs = pd.read_csv(intermediate_path+ "neighborhood_norbits.csv")
-cells = pd.read_csv("/path/to/data/synthetic_mrf_neighborhoods_v1.csv")
 im_label = "Image"
 neighborhood_label = "Neighborhood"
+
+cells = pd.read_csv(input_file_path)
+norbits = pd.read_csv(intermediate_path+ "neighborhood_norbits.csv")
 
 # Compile neighborhood distance vectors into matrix
 neighborhood_list = sorted(set(inputs["image_neighborhood"]))
