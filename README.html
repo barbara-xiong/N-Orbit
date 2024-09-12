@@ -487,6 +487,10 @@ each neighborhood. (recommended at least 1000)</p></li>
 <p><em>For calculating sample-level distances, specify the
 neighborhood_label to the column of constant values, as mentioned in
 Preparing Inputs.</em></p>
+<p>This step takes about 4-20 hours on the provided 100-sample synthetic
+dataset without parallelization, or around 2-10 minutes per 10,000-cell
+sample. Parallelization is recommended for datasets with more samples or
+more cells per sample.</p>
 <p><strong>Step 1b: Compile N-Orbit enumerations into a single
 CSV</strong></p>
 <p>This step generates a compiled CSV called “neighborhood_norbits.csv”
@@ -507,7 +511,8 @@ image/sample or by neighborhood, or run serially on the entire dataset
 <strong>(“Neighborhood Mode”)</strong>, distances are calculated from
 the specified neighborhood to all other neighborhoods lexicographically
 before it. For image/sample chunks <strong>(“Image Mode”)</strong>, the
-same is done for all neighborhoods in the specific image/sample.</p>
+same is done for all neighborhoods in the specific image/sample. The
+mode is set via the UNIT_MODE parameter in the Step2a script.</p>
 <p>For <strong>“Neighborhood Mode”</strong>, this step needs to be run
 for every neighborhood of every image in the dataset. Both the image and
 neighborhood labels need to be passed as a single command line argument.
@@ -519,8 +524,8 @@ every image in the dataset. The image is passed as a command line
 argument as follows.</p>
 <pre class="bash"><code>python Step2a_Neighborhood-Distances.py Image1</code></pre>
 <p>For <strong>“All Mode”</strong>, this step only needs to be run once,
-without passing any command line arguments.</p>
-<pre class="bash"><code>python Step2a_Neighborhood-Distances.py</code></pre>
+with command line argument “all”.</p>
+<pre class="bash"><code>python Step2a_Neighborhood-Distances.py all</code></pre>
 <p><strong>Hyperparameters</strong></p>
 <ul>
 <li><p>UNIT_MODE: The parallelization mode as just described. This can
@@ -531,6 +536,12 @@ files are stored, as earlier.</p></li>
 <p><em>For calculating sample-level distances, use Image Mode,
 substituting the constant value for the neighborhood label,
 e.g. Image1_0.</em></p>
+<p>This step takes about 30-60 minutes on the provided 300-neighborhood
+synthetic dataset using bootstrap sample size 1000 and without
+parallelization. Runtime scales roughly cubically with N-Orbit bootstrap
+sample size and quadratically with neighborhood count. Parallelization
+is recommended for a substantially greater number of neighborhoods
+(1000+) and/or larger N-Orbit bootstrap sample sizes.</p>
 <p><strong>Step 2b: Compile individual distance calculation runs into a
 single distance matrix</strong></p>
 <p>This step creates a CSV of the compiled neighborhood distance matrix

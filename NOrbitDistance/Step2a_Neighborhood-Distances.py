@@ -6,6 +6,7 @@ from munkres import Munkres
 import plotly.express as px
 from matplotlib import pyplot as plt
 import sys
+import os
 from scipy.optimize import linear_sum_assignment
 
 # If UNIT is image, use UNIT_MODE = "Image". If UNIT is neighborhood, use UNIT_MODE = "Neighborhood"
@@ -14,7 +15,7 @@ UNIT = sys.argv[1]
 UNIT_MODE = "Image"
 
 # Path to intermediates
-intermediate_path = "/mnt/isilon/tan_lab/xiongb/tcn/SpaCEOrbit/SyntheticV1/"
+intermediate_path = "/path/to/intermediates/SyntheticV1/"
 
 df = pd.read_csv(intermediate_path + "neighborhood_norbits.csv")
 neighborhood_list = sorted(set(df["image_neighborhood"]))

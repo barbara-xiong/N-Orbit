@@ -34,6 +34,8 @@ threshold = 50
 # Number of n-orbit samples to represent each neighborhood
 sample_size = 1000
 
+# Load input file
+cells = pd.read_csv(input_file_path)
 
 # List of all cell types (alphabetical)
 uniqueCellTypes = list(sorted(set(cells[cell_type_label])))
@@ -44,8 +46,6 @@ if not os.path.exists(intermediate_path+"norbits/"):
 if not os.path.exists(intermediate_path+"neighborhood_vectors/"):
     os.makedirs(intermediate_path+"neighborhood_vectors/")
 
-
-cells = pd.read_csv(input_file_path)
 
 def create_graph(image, threshold=50):
     # Create kNN graph from spatial coordinates
