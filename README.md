@@ -1,5 +1,5 @@
 # **Distance-Based Neighborhood Exploration with N-Orbits**
-![N-Orbit Logo]("https://github.com/barbara-xiong/N-Orbit/blob/main/images/NOrbitLogo-03.png")
+![header]("https://github.com/barbara-xiong/N-Orbit/blob/main/images/NOrbitLogo-03.png")
 
 ## **Contents**
 
