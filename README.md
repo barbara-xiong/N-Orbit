@@ -156,7 +156,7 @@ This step takes about 30-60 minutes on the provided 300-neighborhood synthetic d
 This step creates a CSV of the compiled neighborhood distance matrix from the individual CSVs in the neighborhood_dists folder. This step needs to be run regardless of UNIT_MODE used in Step2a.
 
 ```bash
-python Step2b_Neighborhood-Distances.py
+python Step2b_Compile-Distance-Matrices.py
 ```
 
 **Hyperparameters**
