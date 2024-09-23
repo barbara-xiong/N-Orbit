@@ -458,6 +458,12 @@ line argument.</p>
 <pre class="bash"><code>conda activate NOrbit
 cd NOrbitDistance
 python Step1a_N-Orbit-Enumerate.py Image1     # replace Image1 with your image name</code></pre>
+<p>Alternatively, you can pass “All” as the command line argument, and
+this step will be run for all images in the dataset serially as a single
+job.</p>
+<pre class="bash"><code>conda activate NOrbit
+cd NOrbitDistance
+python Step1a_N-Orbit-Enumerate.py All     # to run all images in a single job</code></pre>
 <p><strong>Hyperparameters</strong></p>
 <ul>
 <li><p>input_file_path: The path to your input dataset CSV

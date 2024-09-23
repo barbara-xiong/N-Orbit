@@ -211,7 +211,7 @@ def explore_graph(image, name = "", n = N):
     G = create_graph(image,threshold=threshold)
     graphDFs = []
     for neighborhood in set(nx.get_node_attributes(G, "Neighborhood").values()):
-        print(IMAGE_NAME, neighborhood)
+        print(name, neighborhood)
         G_n = G.subgraph(filter_by_attribute(G, "Neighborhood", neighborhood))
         df = count_norbits(G_n, n)
         df["image"] = [name]*len(df)
@@ -221,8 +221,11 @@ def explore_graph(image, name = "", n = N):
 
 # Enumerate all n-orbits
 image_names = sorted(set(cells[im_label]))
+if IMAGE_NAME != "All":
+    image_names = [IMAGE_NAME]
+    
 allNorbits = []
-for name in [IMAGE_NAME]:
+for name in image_names:
     cells_im = cells[cells[im_label]==name].reset_index()
     print(name, len(cells_im))
     graphDF = explore_graph(cells_im, name=name)
