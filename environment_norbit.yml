@@ -18,10 +18,10 @@ dependencies:
   - bwidget=1.9.14=ha770c72_1
   - bzip2=1.0.8=h7f98852_4
   - c-ares=1.19.1=hd590300_0
-  - ca-certificates=2024.3.11=h06a4308_0
+  - ca-certificates=2024.7.2=h06a4308_0
   - cachetools=4.2.2=pyhd3eb1b0_0
   - cairo=1.16.0=ha61ee94_1014
-  - certifi=2024.6.2=py310h06a4308_0
+  - certifi=2024.8.30=py310h06a4308_0
   - charset-normalizer=3.1.0=pyhd8ed1ab_0
   - cloudpickle=2.2.1=py310h06a4308_0
   - colorama=0.4.6=pyhd8ed1ab_0
@@ -171,7 +171,7 @@ dependencies:
   - readline=8.2=h8228510_1
   - requests=2.31.0=pyhd8ed1ab_0
   - scikit-learn=1.2.2=py310h41b6a48_1
-  - scipy=1.10.1=py310hd5efca6_0
+  - scipy=1.10.1=py310ha4c1d20_3
   - seaborn=0.12.0=hd8ed1ab_0
   - seaborn-base=0.12.0=pyhd8ed1ab_0
   - sed=4.8=he412f7d_0
