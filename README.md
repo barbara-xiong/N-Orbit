@@ -49,7 +49,16 @@ cd N-Orbit
 
 ```bash
 conda env create -f environment_norbit.yml
-conda activate CytoCommunity
+conda activate NOrbit
+```
+
+**For Windows**
+
+**Preparing the virtual environment**
+
+```bash
+conda env create -f environment_norbit_win.yml
+conda activate NOrbit
 ```
 
 ## **Usage**
@@ -112,7 +121,7 @@ This step takes about 4-20 hours on the provided 100-sample synthetic dataset wi
 This step generates a compiled CSV called "neighborhood_norbits.csv" of all N-Orbit enumeration CSVs in the "norbits" folder.
 
 ```bash
-python Step1b_Compile-N-Orbits.py
+python Step1b_Compile-NOrbits.py
 ```
 
 **Hyperparameters**
