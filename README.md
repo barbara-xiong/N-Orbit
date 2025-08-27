@@ -28,7 +28,7 @@ CPU: i7
 
 Memory: 16G or more
 
-Storage: 10GB or more
+Storage: 10G or more
 
 ### **Software requirement**
 
@@ -78,21 +78,14 @@ Scripts for calculating N-Orbit distance are in the NOrbitDistance folder.
 
 **Run the following steps in the Windows Powershell or Linux Bash shell:**
 
-**Step 1a. Enumerate all N-Orbits in each sample and bootstrap representative vectors.**
+**Step 1. Enumerate all N-Orbits in each sample and bootstrap representative vectors.**
 
-This step generates a folder "norbits" and counts the number of occurrences of all N-Orbits for each neighborhood in a given sample. In addition, this step generates a folder "neighborhood_vectors" and bootstraps the specified number of N-Orbits, storing them in vector form, for each neighborhood of each sample. This step needs to be run for each image in the dataset, with the image name passed as a command line argument.
+This step generates a compiled CSV called "norbits.csv" of all N-Orbits in the dataset. It also generates a folder called "sampled_vectors" of all sampled vectors from the dataset, organized by neighborhood.
 
 ```bash
 conda activate NOrbit
 cd NOrbitDistance
-python Step1a_N-Orbit-Enumerate.py Image1     # replace Image1 with your image name
-```
- Alternatively, you can pass "All" as the command line argument, and this step will be run for all images in the dataset serially as a single job.
- 
-```bash
-conda activate NOrbit
-cd NOrbitDistance
-python Step1a_N-Orbit-Enumerate.py All     # to run all images in a single job
+python Step1a_N-Orbit-Enumerate.py     # replace Image1 with your image name
 ```
 
 **Hyperparameters**
@@ -100,6 +93,8 @@ python Step1a_N-Orbit-Enumerate.py All     # to run all images in a single job
 * input_file_path: The path to your input dataset CSV file.
 
 * intermediate_path: The path to the folder where your intermediate files will be stored. This path should be different for each dataset / analysis performed to avoid file conflicts and ensure each is performed independently.
+
+* MODE: Set to "Neighborhood" in most cases. If neighborhood instances like with the CODEX Spleen example are desired, set to "Instance".
 
 * im_label: The name of your image/sample label column
 
@@ -109,23 +104,21 @@ python Step1a_N-Orbit-Enumerate.py All     # to run all images in a single job
 
 * neighborhood_label: The name of your neighborhood label column
 
-* N: Your desired N-Orbit depth *N* (recommended 2)
+* nucleusPenalty: Your desired nucleus change penalty *p* (recommended 1)
 
-* NUCLEUS_PENALTY: Your desired nucleus change penalty *p* (recommended 10)
+* radius: The maximum search radius (in microns) for cell distances to be recorded (recommended 100). Distances above this value map to a proximity score of 0.
 
-* K: The number of neighbors in the k-NearestNeighbors. This should be 6 in most cases, but for extremely dense or 3D data this value may be higher.
+* distMin: The minimum distance considered when measuring cell proximity (recommended 10). Everything at or below this value maps to a proximity score of 1.
 
-* threshold: The maximum distance for two cells to be considered neighbors after k-NearestNeighbors graph construction. This should be the equivalent of 50 micrometers in whichever unit is being used for the x and y coordinates.
+* instanceRadius: Applies to "Instance" mode only. The maximum distance for two cells to be considered neighbors in radius-based spatial graph construction for instance splitting.
 
-* sample_size: The number of boostrapped N-Orbits used to represent each neighborhood. (recommended at least 1000)
+* minSize: The minimum number of cells in a neighborhood (within a sample) for consideration.
+
+* sample_size: The number of boostrapped N-Orbits used to represent each neighborhood (recommended at least 1000)
 
 *For calculating sample-level distances, specify the neighborhood_label to the column of constant values, as mentioned in Preparing Inputs.*
 
-This step takes about 4-20 hours on the provided 100-sample synthetic dataset without parallelization, or around 2-10 minutes per 10,000-cell sample. Parallelization is recommended for datasets with more samples or more cells per sample.
-
-**Step 1b: Compile N-Orbit enumerations into a single CSV**
-
-This step generates a compiled CSV called "neighborhood_norbits.csv" of all N-Orbit enumeration CSVs in the "norbits" folder.
+This step takes about 20-30 minutes on the provided 100-sample synthetic dataset without parallelization.
 
 ```bash
 python Step1b_Compile-NOrbits.py

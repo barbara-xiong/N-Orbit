@@ -3,22 +3,32 @@ import pandas as pd
 from permutation_test import enrichment_analysis
 from scipy import stats
 import sys
+import os
 
 vectors_path = "/path/to/cluster/vectors/NR_vectors_predicted.csv"
 output_path = "/path/to/output/"
 run = sys.argv[1]
+
+if os.path.isdir(output_path):
+    print(f"'{output_path}' is a directory.")
+else:
+    os.mkdir(output_path)
 
 # Number of permutations
 # If doing multiple runs, num_permutations needs to be the same for all runs
 num_permutations = 25000
 
 # Number of cell types (first numCellTypes columns are not permuted)
-numCellTypes = 18
+numCellTypes = 16
+
+# Threshold for binarization (equivalent to 50um)
+threshold = 0.2
 
 # Load data
 tcn_vectors_df = pd.read_csv(vectors_path)
 tcn_vectors_df = tcn_vectors_df.drop(columns="neighborhood")
-tcn_vectors = tcn_vectors_df.values.astype(np.int32)
+tcn_vectors = (tcn_vectors_df.values>threshold).astype(np.int32)
+tcn_vectors_df = pd.DataFrame(tcn_vectors)
 
 # Subsample size
 sample_size = int(round(len(tcn_vectors_df)*0.2))

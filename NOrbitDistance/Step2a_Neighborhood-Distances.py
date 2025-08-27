@@ -28,9 +28,8 @@ elif UNIT_MODE == "All":
 	unit_neighborhoods = list(neighborhood_list)
 
 # Create directory if not already exists
-if not os.path.exists(intermediate_path+"neighborhood_dists/"):
-    os.makedirs(intermediate_path+"neighborhood_dists/")
-
+if not os.path.exists(intermediate_path+"dists/"):
+    os.makedirs(intermediate_path+"dists/")
 
 print(unit_neighborhoods)
 

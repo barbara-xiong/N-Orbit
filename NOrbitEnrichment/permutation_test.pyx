@@ -2,8 +2,8 @@ import numpy as np
 cimport numpy as np
 
 def single_permutation(np.ndarray[np.int32_t, ndim=2] data, int numCellTypes, 
-                       np.ndarray[np.int32_t, ndim=2] one_indices, 
-                       np.ndarray[np.int32_t, ndim=2] two_indices):
+                       np.ndarray[np.int32_t, ndim=2] one_indices):
+    
     cdef int n_rows = data.shape[0]
     cdef int n_cols = data.shape[1]
     
@@ -14,10 +14,8 @@ def single_permutation(np.ndarray[np.int32_t, ndim=2] data, int numCellTypes,
     permuted_data[:, numCellTypes:] = np.copy(zero_matrix)  # Reset to zero matrix for each permutation
 
     permuted_one_indices = np.random.permutation(one_indices[:, 0])
-    permuted_two_indices = np.random.permutation(two_indices[:, 0])
     
     permuted_data[permuted_one_indices, one_indices[:, 1] + numCellTypes] = 1
-    permuted_data[permuted_two_indices, two_indices[:, 1] + numCellTypes] = 2
     
     return permuted_data
 
@@ -45,9 +43,8 @@ def enrichment_analysis(np.ndarray[np.int32_t, ndim=2] data, int n_permutations,
         subsample_indices = np.random.randint(0, n_rows, sample_size).astype(np.int32)
         subsample_data = data[subsample_indices]
 
-        # Precompute indices for ones and twos in the subsample
+        # Precompute indices for ones in the subsample
         one_indices = np.argwhere(subsample_data[:, numCellTypes:] == 1).astype(np.int32)
-        two_indices = np.argwhere(subsample_data[:, numCellTypes:] == 2).astype(np.int32)
 
         # Count subsampled unique row occurrences
         row_counts.clear()
@@ -59,7 +56,7 @@ def enrichment_analysis(np.ndarray[np.int32_t, ndim=2] data, int n_permutations,
                 row_counts[row_as_tuple] = 1
         
         permuted_counts = {}  # Clear permuted_counts for each permutation
-        permuted_data = single_permutation(subsample_data, numCellTypes, one_indices, two_indices)
+        permuted_data = single_permutation(subsample_data, numCellTypes, one_indices)
         
         for i in range(sample_size):
             row_as_tuple = tuple(permuted_data[i])

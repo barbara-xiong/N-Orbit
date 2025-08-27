@@ -9,12 +9,12 @@ im_label = "Image"
 neighborhood_label = "Neighborhood"
 
 cells = pd.read_csv(input_file_path)
-norbits = pd.read_csv(intermediate_path+ "neighborhood_norbits.csv")
+norbits = pd.read_csv(intermediate_path+ "norbits.csv")
 
 # Compile neighborhood distance vectors into matrix
 neighborhood_list = sorted(set(norbits["image_neighborhood"]))
 dfs = []
-for file in glob.glob(intermediate_path + "neighborhood_dists/*.csv"):
+for file in glob.glob(intermediate_path + "dists/*.csv"):
     dfs.append(pd.read_csv(file).drop(["Unnamed: 0"], axis=1))
 df = pd.concat(dfs, axis = 1)
 df = df.loc[:,~df.columns.duplicated()].copy()
