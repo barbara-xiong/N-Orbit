@@ -154,7 +154,7 @@ python Step2a_Neighborhood-Distances.py all
 
 *For calculating sample-level distances, use Image Mode, substituting the constant value for the neighborhood label, e.g. Image1_0.*
 
-This step takes about 30-60 minutes on the provided 300-neighborhood synthetic dataset using bootstrap sample size 1000 and without parallelization. Runtime scales roughly cubically with N-Orbit bootstrap sample size and quadratically with neighborhood count. Parallelization is recommended for a substantially greater number of neighborhoods (1000+) and/or larger N-Orbit bootstrap sample sizes.
+This step takes a few hours on the provided 300-neighborhood synthetic dataset using bootstrap sample size 1000 and without parallelization. Runtime scales roughly cubically with N-Orbit bootstrap sample size and quadratically with neighborhood count. Parallelization is recommended for a substantially greater number of neighborhoods (1000+) and/or larger N-Orbit bootstrap sample sizes.
 
 **Step 2b: Compile individual distance calculation runs into a single distance matrix**
 
