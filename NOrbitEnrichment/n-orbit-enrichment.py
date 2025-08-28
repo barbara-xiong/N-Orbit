@@ -5,7 +5,7 @@ from scipy import stats
 import sys
 import os
 
-vectors_path = "/path/to/cluster/vectors/NR_vectors_predicted.csv"
+vectors_path = "/path/to/cluster/vectors/NSCLC-D-cluster-0.csv"
 output_path = "/path/to/output/"
 run = sys.argv[1]
 
