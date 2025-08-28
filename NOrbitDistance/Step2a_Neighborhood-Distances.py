@@ -18,7 +18,7 @@ UNIT_MODE = "Image"
 intermediate_path = "/path/to/intermediates/SyntheticV1/"
 
 df = pd.read_csv(intermediate_path + "norbits.csv")
-neighborhood_list = sorted(set(df["image_neighborhood"]))
+neighborhood_list = sorted(set(df["unit"]))
 
 if UNIT_MODE == "Image":
 	unit_neighborhoods = [item for item in neighborhood_list if item.startswith(UNIT)]
