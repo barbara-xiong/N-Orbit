@@ -166,13 +166,13 @@ python Step2b_Compile-Distance-Matrices.py
 
 **Hyperparameters**
 
-* input_file_path: The file path to the original input file, as in Step1a.
+* input_file_path: The file path to the original input file, as in Step1.
 
 * intermediate_path: The folder path where intermediates are stored, as earlier.
 
-* im_label: The name of the image label column, as in Step1a.
+* im_label: The name of the image label column, as in Step1.
 
-* neighborhood_label: The name of the neighborhood label column, as in Step1a.
+* neighborhood_label: The name of the neighborhood label column, as in Step1.
 
 ### **N-Orbit Enrichment**
 
@@ -221,11 +221,11 @@ python compile.py
 
 **Hyperparameters**
 
-* input_file_path: The path to your original input files for calculating N-Orbit distance, as in Step1a.
+* input_file_path: The path to your original input files for calculating N-Orbit distance, as in Step1.
 
 * trials_path: The folder path where results are stored for each set of trials for this neighborhood cluster, as earlier.
 
-* cell_type_label: The name of the column for cell type labels, as in Step1a.
+* cell_type_label: The name of the column for cell type labels, as in Step1.
 
 * output_path: The file path where the final enrichment results will be stored.
 
