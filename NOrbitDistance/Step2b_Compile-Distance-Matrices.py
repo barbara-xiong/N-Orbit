@@ -12,7 +12,7 @@ cells = pd.read_csv(input_file_path)
 norbits = pd.read_csv(intermediate_path+ "norbits.csv")
 
 # Compile neighborhood distance vectors into matrix
-neighborhood_list = sorted(set(norbits["image_neighborhood"]))
+neighborhood_list = sorted(set(norbits["unit"]))
 dfs = []
 for file in glob.glob(intermediate_path + "dists/*.csv"):
     dfs.append(pd.read_csv(file).drop(["Unnamed: 0"], axis=1))

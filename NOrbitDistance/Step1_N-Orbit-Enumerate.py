@@ -15,38 +15,35 @@ intermediate_path = "/path/to/intermediates/SyntheticV1/"
 MODE = "Neighborhood"
 
 # Maximum radius for distance measurement between cells
-radius = 100
+radius = 100 # default 100
 # Maximum radius for connected components in Instance Mode
 instanceRadius = 50  # default 50
 # Minimum neighborhood size (number of cells) to be recorded
 minSize = 40  # default 40
 # Nucleus penalty p (higher means more weight toward cell type composition)
-nucleusPenalty = 1
+nucleusPenalty = 1 # default 1
 # Number of n-orbit samples to represent each neighborhood
-sample_size = 1000
+sample_size = 1000 #default 1000
 
 # Default 10 microns
 distMin = 10
 
 # Column labels
 im_label = "Image"
-x_label = "x_coordinate"
-y_label = "y_coordinate"
+x_label = "x"
+y_label = "y_"
 cell_type_label = "CellType"
-neighborhood_label = "Compartment"
+neighborhood_label = "Neighborhood"
 ### ---
 
 # List of all cell types (alphabetical)
+cells = pd.read_csv(input_file_path)
 uniqueCellTypes = list(sorted(set(cells[cell_type_label])))
 numCellTypes = len(uniqueCellTypes)
 
 # Create directories for intermediates if they don't already exist
 if not os.path.exists(intermediate_path+"sampled_vectors/"):
-    os.makedirs(intermediate_path+"sampled_vectors/")
-if not os.path.exists(intermediate_path+"dists/"):
-    os.makedirs(intermediate_path+"dists/")
-    if not os.path.exists(intermediate_path+"RunTimeLogs/"):
-    os.makedirs(intermediate_path+"RunTimeLogs/")
+	os.makedirs(intermediate_path+"sampled_vectors/")
 
 cell_type_indices = {}
 for i in range(len(uniqueCellTypes)):

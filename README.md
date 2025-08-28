@@ -18,7 +18,7 @@ Tissue cellular neighborhoods (TCNs) are spatially contiguous regions of homogen
 
 Several neighborhood detection methods have been developed in recent years including our lab's own method, [CytoCommunity](https://github.com/huBioinfo/CytoCommunity). However, downstream methods to quantify TCN changes across conditions (e.g. time, clinical subtypes) beyond the level of cell type enrichment are limited. To achieve this goal, we introduce a distance-based approach, centered around a novel N-Orbit formalism of a neighborhood.
 
-The N-Orbit structure, derived from that of the n-hop, encodes the level of proximity of each possible cell type to each cell in a TCN. The focus on proximity, rather than exact subgraph connections, allows for increased computational efficiency and greater instances of each structure. N-Orbits can be formulated as vectors, allowing for calculation of pairwise distance between two N-Orbit structures using their Manhattan distance. Distances between neighborhoods can then be computed from the minimum total distance between their representative set of N-Orbits. Pairwise neighborhood distances can be compiled into an overall neighborhood distance matrix that can be used for clustering, projection, visualization, and other methods for analyzing neighborhoods on a global scale.
+The N-Orbit structure, encodes the proximity of each possible cell type to each cell in a TCN. The focus on proximity, rather than exact subgraph connections, allows for increased computational efficiency and greater instances of each structure. N-Orbits can be formulated as vectors, allowing for calculation of pairwise distance between two N-Orbit structures using their Manhattan distance. Distances between neighborhoods can then be computed from the minimum total distance between their representative set of N-Orbits. Pairwise neighborhood distances can be compiled into an overall neighborhood distance matrix that can be used for clustering, projection, visualization, and other methods for analyzing neighborhoods on a global scale.
 
 ## **Installation**
 
@@ -114,19 +114,15 @@ python Step1a_N-Orbit-Enumerate.py     # replace Image1 with your image name
 
 * minSize: The minimum number of cells in a neighborhood (within a sample) for consideration.
 
-* sample_size: The number of boostrapped N-Orbits used to represent each neighborhood (recommended at least 1000)
+* sample_size: The number of bootstrapped N-Orbits used to represent each neighborhood (recommended at least 1000)
 
 *For calculating sample-level distances, specify the neighborhood_label to the column of constant values, as mentioned in Preparing Inputs.*
 
 This step takes about 20-30 minutes on the provided 100-sample synthetic dataset without parallelization.
 
-```bash
-python Step1b_Compile-NOrbits.py
-```
-
 **Hyperparameters**
 
-* intermediate_path: The path to the folder where your intermediate files are stored, as in Step1a.
+* intermediate_path: The path to the folder where your intermediate files are stored, as in Step1.
 
 **Step 2a: Compute pairwise neighborhood distances**
 

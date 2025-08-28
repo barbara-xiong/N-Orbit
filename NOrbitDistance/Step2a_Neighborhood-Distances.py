@@ -17,7 +17,7 @@ UNIT_MODE = "Image"
 # Path to intermediates
 intermediate_path = "/path/to/intermediates/SyntheticV1/"
 
-df = pd.read_csv(intermediate_path + "neighborhood_norbits.csv")
+df = pd.read_csv(intermediate_path + "norbits.csv")
 neighborhood_list = sorted(set(df["image_neighborhood"]))
 
 if UNIT_MODE == "Image":
@@ -48,7 +48,7 @@ def main():
     n_vectors = {}
     print("Starting vector writing.")
     for i in neighborhood_list:
-            df1_vectors = pd.read_csv(intermediate_path + "neighborhood_vectors/"+i+".csv").set_index("Unnamed: 0")
+            df1_vectors = pd.read_csv(intermediate_path + "sampled_vectors/"+i+".csv").set_index("Unnamed: 0")
             n_vectors[i] = df1_vectors.values
     print("Finished vector writing.")
     
@@ -63,7 +63,7 @@ def main():
                 break
         
     unit_dists = pd.DataFrame(unit_dists)
-    unit_dists.to_csv(intermediate_path+"neighborhood_dists/" + UNIT+"_ndists.csv")
+    unit_dists.to_csv(intermediate_path+"dists/" + UNIT+"_ndists.csv")
 
 if __name__ == "__main__":
     main()
