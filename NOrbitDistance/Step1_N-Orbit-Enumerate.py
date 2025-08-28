@@ -31,7 +31,7 @@ distMin = 10
 # Column labels
 im_label = "Image"
 x_label = "x"
-y_label = "y_"
+y_label = "y"
 cell_type_label = "CellType"
 neighborhood_label = "Neighborhood"
 ### ---
