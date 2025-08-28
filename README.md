@@ -85,7 +85,7 @@ This step generates a compiled CSV called "norbits.csv" of all N-Orbits in the d
 ```bash
 conda activate NOrbit
 cd NOrbitDistance
-python Step1a_N-Orbit-Enumerate.py     # replace Image1 with your image name
+python Step1_N-Orbit-Enumerate.py     # replace Image1 with your image name
 ```
 
 **Hyperparameters**
